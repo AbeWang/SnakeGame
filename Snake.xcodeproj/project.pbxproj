@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30A11FBA178C54EA00281492 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A11FB9178C54EA00281492 /* UIKit.framework */; };
+		30A11FBC178C54EA00281492 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A11FBB178C54EA00281492 /* Foundation.framework */; };
+		30A11FBE178C54EA00281492 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A11FBD178C54EA00281492 /* CoreGraphics.framework */; };
+		30A11FC4178C54EA00281492 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A11FC2178C54EA00281492 /* InfoPlist.strings */; };
+		30A11FC6178C54EB00281492 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FC5178C54EB00281492 /* main.m */; };
+		30A11FCA178C54EB00281492 /* AWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FC9178C54EB00281492 /* AWAppDelegate.m */; };
+		30A11FCC178C54EB00281492 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A11FCB178C54EB00281492 /* Default.png */; };
+		30A11FCE178C54EB00281492 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A11FCD178C54EB00281492 /* Default@2x.png */; };
+		30A11FD0178C54EB00281492 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A11FCF178C54EB00281492 /* Default-568h@2x.png */; };
+		30A11FD8178C555C00281492 /* AWSnakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FD7178C555C00281492 /* AWSnakeViewController.m */; };
+		30A11FDB178C565A00281492 /* AWGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FDA178C565A00281492 /* AWGridView.m */; };
+		30A11FDE178C5A4800281492 /* AWSnake.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FDD178C5A4800281492 /* AWSnake.m */; };
+		30A11FE3178C5B2400281492 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A11FE2178C5B2400281492 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		30A11FB6178C54EA00281492 /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30A11FB9178C54EA00281492 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		30A11FBB178C54EA00281492 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		30A11FBD178C54EA00281492 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		30A11FC1178C54EA00281492 /* Snake-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Snake-Info.plist"; sourceTree = "<group>"; };
+		30A11FC3178C54EA00281492 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		30A11FC5178C54EB00281492 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		30A11FC7178C54EB00281492 /* Snake-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Snake-Prefix.pch"; sourceTree = "<group>"; };
+		30A11FC8178C54EB00281492 /* AWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWAppDelegate.h; sourceTree = "<group>"; };
+		30A11FC9178C54EB00281492 /* AWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWAppDelegate.m; sourceTree = "<group>"; };
+		30A11FCB178C54EB00281492 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		30A11FCD178C54EB00281492 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		30A11FCF178C54EB00281492 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		30A11FD6178C555C00281492 /* AWSnakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSnakeViewController.h; path = Classes/AWSnakeViewController.h; sourceTree = "<group>"; };
+		30A11FD7178C555C00281492 /* AWSnakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSnakeViewController.m; path = Classes/AWSnakeViewController.m; sourceTree = "<group>"; };
+		30A11FD9178C565A00281492 /* AWGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWGridView.h; path = Classes/AWGridView.h; sourceTree = "<group>"; };
+		30A11FDA178C565A00281492 /* AWGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWGridView.m; path = Classes/AWGridView.m; sourceTree = "<group>"; };
+		30A11FDC178C5A4800281492 /* AWSnake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSnake.h; path = Classes/AWSnake.h; sourceTree = "<group>"; };
+		30A11FDD178C5A4800281492 /* AWSnake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSnake.m; path = Classes/AWSnake.m; sourceTree = "<group>"; };
+		30A11FE2178C5B2400281492 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30A11FB3178C54EA00281492 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30A11FE3178C5B2400281492 /* QuartzCore.framework in Frameworks */,
+				30A11FBA178C54EA00281492 /* UIKit.framework in Frameworks */,
+				30A11FBC178C54EA00281492 /* Foundation.framework in Frameworks */,
+				30A11FBE178C54EA00281492 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30A11FAD178C54EA00281492 = {
+			isa = PBXGroup;
+			children = (
+				30A11FBF178C54EA00281492 /* Snake */,
+				30A11FB8178C54EA00281492 /* Frameworks */,
+				30A11FB7178C54EA00281492 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		30A11FB7178C54EA00281492 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30A11FB6178C54EA00281492 /* Snake.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30A11FB8178C54EA00281492 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30A11FE2178C5B2400281492 /* QuartzCore.framework */,
+				30A11FB9178C54EA00281492 /* UIKit.framework */,
+				30A11FBB178C54EA00281492 /* Foundation.framework */,
+				30A11FBD178C54EA00281492 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		30A11FBF178C54EA00281492 /* Snake */ = {
+			isa = PBXGroup;
+			children = (
+				30A11FC8178C54EB00281492 /* AWAppDelegate.h */,
+				30A11FC9178C54EB00281492 /* AWAppDelegate.m */,
+				30A11FC0178C54EA00281492 /* Supporting Files */,
+				30A11FD6178C555C00281492 /* AWSnakeViewController.h */,
+				30A11FD7178C555C00281492 /* AWSnakeViewController.m */,
+				30A11FD9178C565A00281492 /* AWGridView.h */,
+				30A11FDA178C565A00281492 /* AWGridView.m */,
+				30A11FDC178C5A4800281492 /* AWSnake.h */,
+				30A11FDD178C5A4800281492 /* AWSnake.m */,
+			);
+			path = Snake;
+			sourceTree = "<group>";
+		};
+		30A11FC0178C54EA00281492 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30A11FC1178C54EA00281492 /* Snake-Info.plist */,
+				30A11FC2178C54EA00281492 /* InfoPlist.strings */,
+				30A11FC5178C54EB00281492 /* main.m */,
+				30A11FC7178C54EB00281492 /* Snake-Prefix.pch */,
+				30A11FCB178C54EB00281492 /* Default.png */,
+				30A11FCD178C54EB00281492 /* Default@2x.png */,
+				30A11FCF178C54EB00281492 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30A11FB5178C54EA00281492 /* Snake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30A11FD3178C54EB00281492 /* Build configuration list for PBXNativeTarget "Snake" */;
+			buildPhases = (
+				30A11FB2178C54EA00281492 /* Sources */,
+				30A11FB3178C54EA00281492 /* Frameworks */,
+				30A11FB4178C54EA00281492 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Snake;
+			productName = Snake;
+			productReference = 30A11FB6178C54EA00281492 /* Snake.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30A11FAE178C54EA00281492 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AW;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Abe Wang";
+			};
+			buildConfigurationList = 30A11FB1178C54EA00281492 /* Build configuration list for PBXProject "Snake" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 30A11FAD178C54EA00281492;
+			productRefGroup = 30A11FB7178C54EA00281492 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30A11FB5178C54EA00281492 /* Snake */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30A11FB4178C54EA00281492 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30A11FC4178C54EA00281492 /* InfoPlist.strings in Resources */,
+				30A11FCC178C54EB00281492 /* Default.png in Resources */,
+				30A11FCE178C54EB00281492 /* Default@2x.png in Resources */,
+				30A11FD0178C54EB00281492 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30A11FB2178C54EA00281492 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30A11FC6178C54EB00281492 /* main.m in Sources */,
+				30A11FCA178C54EB00281492 /* AWAppDelegate.m in Sources */,
+				30A11FD8178C555C00281492 /* AWSnakeViewController.m in Sources */,
+				30A11FDB178C565A00281492 /* AWGridView.m in Sources */,
+				30A11FDE178C5A4800281492 /* AWSnake.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		30A11FC2178C54EA00281492 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30A11FC3178C54EA00281492 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		30A11FD1178C54EB00281492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		30A11FD2178C54EB00281492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		30A11FD4178C54EB00281492 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Snake/Snake-Prefix.pch";
+				INFOPLIST_FILE = "Snake/Snake-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		30A11FD5178C54EB00281492 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Snake/Snake-Prefix.pch";
+				INFOPLIST_FILE = "Snake/Snake-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30A11FB1178C54EA00281492 /* Build configuration list for PBXProject "Snake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30A11FD1178C54EB00281492 /* Debug */,
+				30A11FD2178C54EB00281492 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30A11FD3178C54EB00281492 /* Build configuration list for PBXNativeTarget "Snake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30A11FD4178C54EB00281492 /* Debug */,
+				30A11FD5178C54EB00281492 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30A11FAE178C54EA00281492 /* Project object */;
+}

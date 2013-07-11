@@ -1,12 +1,11 @@
 #import "AWSnake.h"
+#import "AWFood.h"
+
+NSString *const kSnakeMoveErrorDomain = @"kSnakeMoveErrorDomain";
 
 static AWSnake *instance = nil;
 
 @implementation AWSnake
-{
-    NSInteger boundaryRow;
-    NSInteger boundaryColumn;
-}
 
 + (AWSnake *)snakeInstance
 {
@@ -28,22 +27,35 @@ static AWSnake *instance = nil;
 
 - (void)_init
 {
-    AWSnakeBodyItem *item1 = [[AWSnakeBodyItem alloc] initWithRow:10 column:12];
-    AWSnakeBodyItem *item2 = [[AWSnakeBodyItem alloc] initWithRow:10 column:13];
-    AWSnakeBodyItem *item3 = [[AWSnakeBodyItem alloc] initWithRow:10 column:14];
-    AWSnakeBodyItem *item4 = [[AWSnakeBodyItem alloc] initWithRow:10 column:15];
-    AWSnakeBodyItem *item5 = [[AWSnakeBodyItem alloc] initWithRow:10 column:16];
+    AWPositionItem *item1 = [[AWPositionItem alloc] initWithRow:0 column:2];
+    AWPositionItem *item2 = [[AWPositionItem alloc] initWithRow:0 column:3];
+    AWPositionItem *item3 = [[AWPositionItem alloc] initWithRow:0 column:4];
+    AWPositionItem *item4 = [[AWPositionItem alloc] initWithRow:0 column:5];
+    AWPositionItem *item5 = [[AWPositionItem alloc] initWithRow:0 column:6];
     _bodyItems = [[NSMutableArray alloc] initWithObjects:item1, item2, item3, item4, item5, nil];
 }
 
-- (void)setBoundaryRow:(NSInteger)rowCount column:(NSInteger)columnCount
+- (void)reset
 {
-    boundaryRow = rowCount;
-    boundaryColumn = columnCount;
+	[self.bodyItems removeAllObjects];
+	AWPositionItem *item1 = [[AWPositionItem alloc] initWithRow:0 column:2];
+    AWPositionItem *item2 = [[AWPositionItem alloc] initWithRow:0 column:3];
+    AWPositionItem *item3 = [[AWPositionItem alloc] initWithRow:0 column:4];
+    AWPositionItem *item4 = [[AWPositionItem alloc] initWithRow:0 column:5];
+    AWPositionItem *item5 = [[AWPositionItem alloc] initWithRow:0 column:6];
+	[_bodyItems addObjectsFromArray:@[item1, item2, item3, item4, item5]];
+	_currentDirection = AWSnakeDirectionDown;
 }
 
-- (void)moveWithDirection:(AWSnakeDirection)inDirection
+- (void)setBoundary:(AWPositionItem *)positionItem
 {
+	_boundaryItem = positionItem;
+}
+
+- (void)moveWithDirection:(AWSnakeDirection)inDirection completionHandler:(void (^)(NSError*))inHandler
+{
+	NSError *error = nil;
+
     if (inDirection == AWSnakeDirectionUp && _currentDirection == AWSnakeDirectionDown) {
         _currentDirection = AWSnakeDirectionDown;
     }
@@ -59,10 +71,10 @@ static AWSnake *instance = nil;
     else {
         _currentDirection = inDirection;
     }
-    
-    [self.bodyItems removeLastObject];
-    AWSnakeBodyItem *firstItem = self.bodyItems[0];
-    AWSnakeBodyItem *newItem = [[AWSnakeBodyItem alloc] init];
+
+	// Create new item for head
+    AWPositionItem *firstItem = self.bodyItems[0];
+    AWPositionItem *newItem = [[AWPositionItem alloc] init];
     switch (_currentDirection) {
         case AWSnakeDirectionUp:
             newItem.row = firstItem.row - 1;
@@ -81,43 +93,48 @@ static AWSnake *instance = nil;
             newItem.column = firstItem.column + 1;
             break;
     }
-    
+
+	// Check item bounds
     if (newItem.row < 0) {
-        newItem.row = boundaryRow - 1;
+        newItem.row = _boundaryItem.row - 1;
     }
     if (newItem.column < 0) {
-        newItem.column = boundaryColumn - 1;
+        newItem.column = _boundaryItem.column - 1;
     }
-    if (newItem.row >= boundaryRow) {
+    if (newItem.row >= _boundaryItem.row) {
         newItem.row = 0;
     }
-    if (newItem.column >= boundaryColumn) {
+    if (newItem.column >= _boundaryItem.column) {
         newItem.column = 0;
     }
     
-#warning check collision myself
-    
-    [self.bodyItems insertObject:newItem atIndex:0];
+	// Check collision
+	for (AWPositionItem *item in self.bodyItems) {
+		if (item.row == newItem.row && item.column == newItem.column) {
+			error = [NSError errorWithDomain:kSnakeMoveErrorDomain code:AWSnakeErrorCode_Move userInfo:nil];
+		}
+	}
+
+	// Check food
+	AWPositionItem *foodItem = [AWFood foodInstance].position;
+	if (newItem.row == foodItem.row && newItem.column == foodItem.column) {
+		// Add new item
+		
+
+		// Random
+		NSInteger foodRow = rand() % _boundaryItem.row;
+		NSInteger foodColumn = rand() % _boundaryItem.column;
+		[AWFood foodInstance].position.row = foodRow;
+		[AWFood foodInstance].position.column = foodColumn;
+	}
+
+	if (!error) {
+		// Remove last item
+		[self.bodyItems removeLastObject];
+		// Insert new item to head
+		[self.bodyItems insertObject:newItem atIndex:0];
+	}
+	inHandler(error);
 }
 
-- (void)eatFood
-{    
-}
-
-@end
-
-
-@implementation AWSnakeBodyItem
-
-- (id)initWithRow:(NSInteger)inRow column:(NSInteger)inColumn
-{
-    self = [super init];
-    if (self) {
-        row = inRow;
-        column = inColumn;
-    }
-    return self;
-}
-
-@synthesize row, column;
 @end

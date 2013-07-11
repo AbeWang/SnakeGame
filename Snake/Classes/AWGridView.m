@@ -1,5 +1,6 @@
 #import "AWGridView.h"
 #import "AWSnake.h"
+#import "AWFood.h"
 
 @implementation AWGridView
 {
@@ -52,8 +53,16 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
+
+	// Draw food
+	[[UIColor greenColor] set];
+	AWPositionItem *foodPosition = [AWFood foodInstance].position;
+	UIBezierPath *foodPath = [UIBezierPath bezierPathWithRect:CGRectMake(foodPosition.column * gridWidth, foodPosition.row * gridWidth, gridWidth, gridWidth)];
+	[foodPath fill];
+
+	// Draw snake
     [[UIColor purpleColor] set];
-    for (AWSnakeBodyItem *item in [AWSnake snakeInstance].bodyItems) {
+    for (AWPositionItem *item in [AWSnake snakeInstance].bodyItems) {
         UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(item.column * gridWidth, item.row * gridWidth, gridWidth, gridWidth)];
         [path fill];
     }

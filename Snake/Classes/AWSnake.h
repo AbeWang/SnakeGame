@@ -1,3 +1,5 @@
+#import "AWPositionItem.h"
+
 typedef enum {
     AWSnakeDirectionUp = 0,
     AWSnakeDirectionDown,
@@ -5,23 +7,20 @@ typedef enum {
     AWSnakeDirectionLeft
 }AWSnakeDirection;
 
+typedef enum {
+	AWSnakeErrorCode_Move = -1
+} AWSnakeErrorCode;
+
+extern NSString *const kSnakeMoveErrorDomain;
+
 @interface AWSnake : NSObject
 
 + (AWSnake *)snakeInstance;
 
-- (void)setBoundaryRow:(NSInteger)rowCount column:(NSInteger)columnCount;
-- (void)eatFood;
-- (void)moveWithDirection:(AWSnakeDirection)inDirection;
+- (void)reset;
+- (void)moveWithDirection:(AWSnakeDirection)inDirection completionHandler:(void (^)(NSError*))inHandler;
 
 @property (readonly, nonatomic) NSMutableArray *bodyItems;
 @property (readonly, nonatomic) AWSnakeDirection currentDirection;
-@end
-
-
-@interface AWSnakeBodyItem : NSObject
-
-- (id)initWithRow:(NSInteger)inRow column:(NSInteger)inColumn;
-
-@property (nonatomic) NSInteger row;
-@property (nonatomic) NSInteger column;
+@property (strong, nonatomic) AWPositionItem *boundaryItem;
 @end

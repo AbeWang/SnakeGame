@@ -16,14 +16,14 @@
 - (void)loadView
 {
     [super loadView];
-    gridView = [[AWGridView alloc] initWithFrame:self.view.bounds gridWidth:10.0];
+    gridView = [[AWGridView alloc] initWithFrame:self.view.bounds gridWidth:20.0];
     self.view = gridView;
     
     NSInteger rowCount = [[gridView gridInfo][@"rowCount"] integerValue];
     NSInteger columnCount = [[gridView gridInfo][@"columnCount"] integerValue];
-    [[AWSnake snakeInstance] setBoundaryRow:rowCount column:columnCount];
+	AWPositionItem *boundary = [[AWPositionItem alloc] initWithRow:rowCount column:columnCount];
+	[AWSnake snakeInstance].boundaryItem = boundary;
     direction = [AWSnake snakeInstance].currentDirection;
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(snakeMove) userInfo:nil repeats:YES];
     
     UISwipeGestureRecognizer *upGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(up:)];
     [upGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
@@ -37,11 +37,22 @@
     UISwipeGestureRecognizer *rightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(right:)];
     [rightGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:rightGestureRecognizer];
+
+	timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(snakeMove) userInfo:nil repeats:YES];
 }
 
 - (void)snakeMove
 {
-    [[AWSnake snakeInstance] moveWithDirection:direction];
+    [[AWSnake snakeInstance] moveWithDirection:direction completionHandler:^(NSError *error) {
+		if (error) {
+			[timer invalidate];
+			if ([error code] == AWSnakeErrorCode_Move) {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oh no ~~" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Restart", nil];
+				[alert show];
+			}
+			return;
+		}
+	}];
     [self.view setNeedsDisplay];
 }
 
@@ -60,6 +71,14 @@
 - (void)right:(UISwipeGestureRecognizer *)gr
 {
     direction = AWSnakeDirectionRight;
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	[[AWSnake snakeInstance] reset];
+	timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(snakeMove) userInfo:nil repeats:YES];
 }
 
 @end

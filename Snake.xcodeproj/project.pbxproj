@@ -20,6 +20,8 @@
 		30A11FDB178C565A00281492 /* AWGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FDA178C565A00281492 /* AWGridView.m */; };
 		30A11FDE178C5A4800281492 /* AWSnake.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FDD178C5A4800281492 /* AWSnake.m */; };
 		30A11FE3178C5B2400281492 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A11FE2178C5B2400281492 /* QuartzCore.framework */; };
+		30D180BB178E98F600A65442 /* AWFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D180BA178E98F500A65442 /* AWFood.m */; };
+		30D180BE178EA38200A65442 /* AWPositionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D180BD178EA38200A65442 /* AWPositionItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,10 @@
 		30A11FDC178C5A4800281492 /* AWSnake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSnake.h; path = Classes/AWSnake.h; sourceTree = "<group>"; };
 		30A11FDD178C5A4800281492 /* AWSnake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSnake.m; path = Classes/AWSnake.m; sourceTree = "<group>"; };
 		30A11FE2178C5B2400281492 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		30D180B9178E98F500A65442 /* AWFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWFood.h; path = Classes/AWFood.h; sourceTree = "<group>"; };
+		30D180BA178E98F500A65442 /* AWFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWFood.m; path = Classes/AWFood.m; sourceTree = "<group>"; };
+		30D180BC178EA38200A65442 /* AWPositionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWPositionItem.h; path = Classes/AWPositionItem.h; sourceTree = "<group>"; };
+		30D180BD178EA38200A65442 /* AWPositionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWPositionItem.m; path = Classes/AWPositionItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,10 @@
 				30A11FDA178C565A00281492 /* AWGridView.m */,
 				30A11FDC178C5A4800281492 /* AWSnake.h */,
 				30A11FDD178C5A4800281492 /* AWSnake.m */,
+				30D180B9178E98F500A65442 /* AWFood.h */,
+				30D180BA178E98F500A65442 /* AWFood.m */,
+				30D180BC178EA38200A65442 /* AWPositionItem.h */,
+				30D180BD178EA38200A65442 /* AWPositionItem.m */,
 			);
 			path = Snake;
 			sourceTree = "<group>";
@@ -189,6 +199,8 @@
 				30A11FD8178C555C00281492 /* AWSnakeViewController.m in Sources */,
 				30A11FDB178C565A00281492 /* AWGridView.m in Sources */,
 				30A11FDE178C5A4800281492 /* AWSnake.m in Sources */,
+				30D180BB178E98F600A65442 /* AWFood.m in Sources */,
+				30D180BE178EA38200A65442 /* AWPositionItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +315,7 @@
 				30A11FD5178C54EB00281492 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

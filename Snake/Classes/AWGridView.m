@@ -5,7 +5,6 @@
 @implementation AWGridView
 {
     NSUInteger gridWidth;
-    UIImageView *imageView;
 }
 
 - (id)initWithFrame:(CGRect)frame gridWidth:(NSUInteger)width
@@ -15,10 +14,11 @@
         self.backgroundColor = [UIColor whiteColor];
         
         gridWidth = width;
-        imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        [self addSubview:imageView];
+        NSInteger rowCount = ceilf(self.bounds.size.height / width);
+        NSInteger columnCount = ceilf(self.bounds.size.width / width);
+        _boundary = [[AWPositionItem alloc] initWithRow:rowCount column:columnCount];
  
-        // Draw grid
+        // Draw grid background view
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
         [[UIColor blackColor] set];
         for (NSUInteger rowOffset = gridWidth; rowOffset < self.bounds.size.height; rowOffset += gridWidth) {
@@ -37,17 +37,12 @@
             [path stroke];
             CGPathRelease(pathRef);
         }
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+        [self addSubview:imageView];
         UIGraphicsEndImageContext();
     }
     return self;
-}
-
-- (NSDictionary *)gridInfo
-{
-    NSInteger rowCount = ceilf(self.bounds.size.height / gridWidth);
-    NSInteger columnCount = ceilf(self.bounds.size.width / gridWidth);
-    return @{@"rowCount" : @(rowCount), @"columnCount" : @(columnCount)};
 }
 
 - (void)drawRect:(CGRect)rect

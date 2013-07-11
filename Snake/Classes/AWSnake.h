@@ -20,7 +20,7 @@ extern NSString *const kSnakeMoveErrorDomain;
 - (void)reset;
 - (void)moveWithDirection:(AWSnakeDirection)inDirection completionHandler:(void (^)(NSError*))inHandler;
 
+@property (strong, nonatomic) AWPositionItem *boundaryItem;
 @property (readonly, nonatomic) NSMutableArray *bodyItems;
 @property (readonly, nonatomic) AWSnakeDirection currentDirection;
-@property (strong, nonatomic) AWPositionItem *boundaryItem;
 @end

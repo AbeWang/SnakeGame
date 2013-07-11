@@ -122,10 +122,18 @@ static AWSnake *instance = nil;
 		
 
 		// Random
-		NSInteger foodRow = rand() % _boundaryItem.row;
-		NSInteger foodColumn = rand() % _boundaryItem.column;
-		[AWFood foodInstance].position.row = foodRow;
-		[AWFood foodInstance].position.column = foodColumn;
+        NSInteger foodRow = rand() % _boundaryItem.row;
+        NSInteger foodColumn = rand() % _boundaryItem.column;
+random:
+        for (AWPositionItem *item in _bodyItems) {
+            if (foodRow == item.row && foodColumn == item.column) {
+                foodRow = rand() % _boundaryItem.row;
+                foodColumn = rand() % _boundaryItem.column;
+                goto random;
+            }
+        }
+        [AWFood foodInstance].position.row = foodRow;
+        [AWFood foodInstance].position.column = foodColumn;
 	}
 
 	if (!error) {

@@ -1,7 +1,8 @@
+#import "AWPositionItem.h"
+
 @interface AWGridView : UIView
 
 - (id)initWithFrame:(CGRect)frame gridWidth:(NSUInteger)width;
 
-- (NSDictionary *)gridInfo;
-
+@property (readonly, nonatomic) AWPositionItem *boundary;
 @end

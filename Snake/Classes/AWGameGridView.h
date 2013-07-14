@@ -1,6 +1,6 @@
 #import "AWPositionItem.h"
 
-@interface AWGridView : UIView
+@interface AWGameGridView : UIView
 
 - (id)initWithFrame:(CGRect)frame gridWidth:(NSUInteger)width;
 

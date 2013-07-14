@@ -8,19 +8,18 @@ typedef enum {
 }AWSnakeDirection;
 
 typedef enum {
-	AWSnakeErrorCode_Move = -1
-} AWSnakeErrorCode;
+	AWSnakeErrorBodyCollision = -1
+}AWSnakeError;
 
-extern NSString *const kSnakeMoveErrorDomain;
+extern NSString *const kSnakeErrorDomain;
 
 @interface AWSnake : NSObject
 
 + (AWSnake *)snakeInstance;
-
 - (void)reset;
 - (void)moveWithDirection:(AWSnakeDirection)inDirection completionHandler:(void (^)(NSError*))inHandler;
 
-@property (strong, nonatomic) AWPositionItem *boundaryItem;
+@property (strong, nonatomic) AWPositionItem *boundary;
 @property (readonly, nonatomic) NSMutableArray *bodyItems;
 @property (readonly, nonatomic) AWSnakeDirection currentDirection;
 @end

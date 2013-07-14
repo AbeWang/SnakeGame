@@ -17,7 +17,7 @@
 		30A11FCE178C54EB00281492 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A11FCD178C54EB00281492 /* Default@2x.png */; };
 		30A11FD0178C54EB00281492 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30A11FCF178C54EB00281492 /* Default-568h@2x.png */; };
 		30A11FD8178C555C00281492 /* AWSnakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FD7178C555C00281492 /* AWSnakeViewController.m */; };
-		30A11FDB178C565A00281492 /* AWGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FDA178C565A00281492 /* AWGridView.m */; };
+		30A11FDB178C565A00281492 /* AWGameGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FDA178C565A00281492 /* AWGameGridView.m */; };
 		30A11FDE178C5A4800281492 /* AWSnake.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A11FDD178C5A4800281492 /* AWSnake.m */; };
 		30A11FE3178C5B2400281492 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A11FE2178C5B2400281492 /* QuartzCore.framework */; };
 		30D180BB178E98F600A65442 /* AWFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D180BA178E98F500A65442 /* AWFood.m */; };
@@ -40,8 +40,8 @@
 		30A11FCF178C54EB00281492 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		30A11FD6178C555C00281492 /* AWSnakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSnakeViewController.h; path = Classes/AWSnakeViewController.h; sourceTree = "<group>"; };
 		30A11FD7178C555C00281492 /* AWSnakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSnakeViewController.m; path = Classes/AWSnakeViewController.m; sourceTree = "<group>"; };
-		30A11FD9178C565A00281492 /* AWGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWGridView.h; path = Classes/AWGridView.h; sourceTree = "<group>"; };
-		30A11FDA178C565A00281492 /* AWGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWGridView.m; path = Classes/AWGridView.m; sourceTree = "<group>"; };
+		30A11FD9178C565A00281492 /* AWGameGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWGameGridView.h; path = Classes/AWGameGridView.h; sourceTree = "<group>"; };
+		30A11FDA178C565A00281492 /* AWGameGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWGameGridView.m; path = Classes/AWGameGridView.m; sourceTree = "<group>"; };
 		30A11FDC178C5A4800281492 /* AWSnake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AWSnake.h; path = Classes/AWSnake.h; sourceTree = "<group>"; };
 		30A11FDD178C5A4800281492 /* AWSnake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AWSnake.m; path = Classes/AWSnake.m; sourceTree = "<group>"; };
 		30A11FE2178C5B2400281492 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -102,8 +102,8 @@
 				30A11FC0178C54EA00281492 /* Supporting Files */,
 				30A11FD6178C555C00281492 /* AWSnakeViewController.h */,
 				30A11FD7178C555C00281492 /* AWSnakeViewController.m */,
-				30A11FD9178C565A00281492 /* AWGridView.h */,
-				30A11FDA178C565A00281492 /* AWGridView.m */,
+				30A11FD9178C565A00281492 /* AWGameGridView.h */,
+				30A11FDA178C565A00281492 /* AWGameGridView.m */,
 				30A11FDC178C5A4800281492 /* AWSnake.h */,
 				30A11FDD178C5A4800281492 /* AWSnake.m */,
 				30D180B9178E98F500A65442 /* AWFood.h */,
@@ -197,7 +197,7 @@
 				30A11FC6178C54EB00281492 /* main.m in Sources */,
 				30A11FCA178C54EB00281492 /* AWAppDelegate.m in Sources */,
 				30A11FD8178C555C00281492 /* AWSnakeViewController.m in Sources */,
-				30A11FDB178C565A00281492 /* AWGridView.m in Sources */,
+				30A11FDB178C565A00281492 /* AWGameGridView.m in Sources */,
 				30A11FDE178C5A4800281492 /* AWSnake.m in Sources */,
 				30D180BB178E98F600A65442 /* AWFood.m in Sources */,
 				30D180BE178EA38200A65442 /* AWPositionItem.m in Sources */,

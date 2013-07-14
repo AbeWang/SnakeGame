@@ -1,7 +1,7 @@
 #import "AWSnake.h"
 #import "AWFood.h"
 
-NSString *const kSnakeMoveErrorDomain = @"kSnakeMoveErrorDomain";
+NSString *const kSnakeErrorDomain = @"kSnakeErrorDomain";
 
 static AWSnake *instance = nil;
 
@@ -27,29 +27,23 @@ static AWSnake *instance = nil;
 
 - (void)_init
 {
-    AWPositionItem *item1 = [[AWPositionItem alloc] initWithRow:0 column:2];
-    AWPositionItem *item2 = [[AWPositionItem alloc] initWithRow:0 column:3];
-    AWPositionItem *item3 = [[AWPositionItem alloc] initWithRow:0 column:4];
-    AWPositionItem *item4 = [[AWPositionItem alloc] initWithRow:0 column:5];
-    AWPositionItem *item5 = [[AWPositionItem alloc] initWithRow:0 column:6];
-    _bodyItems = [[NSMutableArray alloc] initWithObjects:item1, item2, item3, item4, item5, nil];
+    _bodyItems = [[NSMutableArray alloc] init];
+    [self _resetBody];
 }
 
 - (void)reset
 {
-	[self.bodyItems removeAllObjects];
-	AWPositionItem *item1 = [[AWPositionItem alloc] initWithRow:0 column:2];
-    AWPositionItem *item2 = [[AWPositionItem alloc] initWithRow:0 column:3];
-    AWPositionItem *item3 = [[AWPositionItem alloc] initWithRow:0 column:4];
-    AWPositionItem *item4 = [[AWPositionItem alloc] initWithRow:0 column:5];
-    AWPositionItem *item5 = [[AWPositionItem alloc] initWithRow:0 column:6];
-	[_bodyItems addObjectsFromArray:@[item1, item2, item3, item4, item5]];
+	[self _resetBody];
 	_currentDirection = AWSnakeDirectionDown;
 }
 
-- (void)setBoundary:(AWPositionItem *)positionItem
+- (void)_resetBody
 {
-	_boundaryItem = positionItem;
+    [_bodyItems removeAllObjects];
+    for (NSUInteger i = 0; i < 5; i++) {
+        AWPositionItem *bodyItem = [[AWPositionItem alloc] initWithRow:0 column:i + 3];
+        [_bodyItems addObject:bodyItem];
+    }
 }
 
 - (void)moveWithDirection:(AWSnakeDirection)inDirection completionHandler:(void (^)(NSError*))inHandler
@@ -94,55 +88,53 @@ static AWSnake *instance = nil;
             break;
     }
 
-	// Check item bounds
+	// Check new item boundary
     if (newItem.row < 0) {
-        newItem.row = _boundaryItem.row - 1;
+        newItem.row = _boundary.row - 1;
     }
-    if (newItem.column < 0) {
-        newItem.column = _boundaryItem.column - 1;
-    }
-    if (newItem.row >= _boundaryItem.row) {
+    else if (newItem.row >= _boundary.row) {
         newItem.row = 0;
     }
-    if (newItem.column >= _boundaryItem.column) {
+    if (newItem.column < 0) {
+        newItem.column = _boundary.column - 1;
+    }
+    else if (newItem.column >= _boundary.column) {
         newItem.column = 0;
     }
     
 	// Check collision
 	for (AWPositionItem *item in self.bodyItems) {
 		if (item.row == newItem.row && item.column == newItem.column) {
-			error = [NSError errorWithDomain:kSnakeMoveErrorDomain code:AWSnakeErrorCode_Move userInfo:nil];
+			error = [NSError errorWithDomain:kSnakeErrorDomain code:AWSnakeErrorBodyCollision userInfo:nil];
+            inHandler(error);
+            return;
 		}
 	}
 
 	// Check food
 	AWPositionItem *foodItem = [AWFood foodInstance].position;
 	if (newItem.row == foodItem.row && newItem.column == foodItem.column) {
-		// Add new item
-		
-
-		// Random
-        NSInteger foodRow = rand() % _boundaryItem.row;
-        NSInteger foodColumn = rand() % _boundaryItem.column;
-random:
+		// Random position
+        NSInteger foodRow = rand() % _boundary.row;
+        NSInteger foodColumn = rand() % _boundary.column;
+foodRandom:
         for (AWPositionItem *item in _bodyItems) {
             if (foodRow == item.row && foodColumn == item.column) {
-                foodRow = rand() % _boundaryItem.row;
-                foodColumn = rand() % _boundaryItem.column;
-                goto random;
+                foodRow = rand() % _boundary.row;
+                foodColumn = rand() % _boundary.column;
+                goto foodRandom;
             }
         }
         [AWFood foodInstance].position.row = foodRow;
         [AWFood foodInstance].position.column = foodColumn;
 	}
-
-	if (!error) {
-		// Remove last item
+    else {
+        // Remove last item
 		[self.bodyItems removeLastObject];
-		// Insert new item to head
-		[self.bodyItems insertObject:newItem atIndex:0];
-	}
-	inHandler(error);
+    }
+    // Insert new item to head
+    [self.bodyItems insertObject:newItem atIndex:0];
+    inHandler(error);
 }
 
 @end

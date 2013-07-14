@@ -1,11 +1,13 @@
 #import "AWSnakeViewController.h"
-#import "AWGridView.h"
+#import "AWGameGridView.h"
 #import "AWSnake.h"
+
+#define MOVE_SPEED 0.3
 
 @implementation AWSnakeViewController
 {
     NSTimer *timer;
-    AWSnakeDirection direction;
+    AWSnakeDirection snakeDirection;
 }
 
 - (void)dealloc
@@ -15,11 +17,11 @@
 - (void)loadView
 {
     [super loadView];
-    AWGridView *gridView = [[AWGridView alloc] initWithFrame:self.view.bounds gridWidth:20.0];
+    AWGameGridView *gridView = [[AWGameGridView alloc] initWithFrame:self.view.bounds gridWidth:20.0];
     self.view = gridView;
     
-	[AWSnake snakeInstance].boundaryItem = gridView.boundary;
-    direction = [AWSnake snakeInstance].currentDirection;
+	[AWSnake snakeInstance].boundary = gridView.boundary;
+    snakeDirection = [AWSnake snakeInstance].currentDirection;
     
     UISwipeGestureRecognizer *upGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(up:)];
     [upGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
@@ -34,48 +36,49 @@
     [rightGestureRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:rightGestureRecognizer];
 
-	timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(snakeMove) userInfo:nil repeats:YES];
+	timer = [NSTimer scheduledTimerWithTimeInterval:MOVE_SPEED target:self selector:@selector(snakeMove) userInfo:nil repeats:YES];
 }
+
+#pragma mark - Actions
 
 - (void)snakeMove
 {
-    [[AWSnake snakeInstance] moveWithDirection:direction completionHandler:^(NSError *error) {
+    [[AWSnake snakeInstance] moveWithDirection:snakeDirection completionHandler:^(NSError *error) {
 		if (error) {
 			[timer invalidate];
-			if ([error code] == AWSnakeErrorCode_Move) {
+			if ([error code] == AWSnakeErrorBodyCollision) {
 				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Restart", nil];
 				[alert show];
 			}
 			return;
 		}
+        [self.view setNeedsDisplay];
 	}];
-    [self.view setNeedsDisplay];
 }
-
 - (void)up:(UISwipeGestureRecognizer *)gr
 {
-    direction = AWSnakeDirectionUp;
+    snakeDirection = AWSnakeDirectionUp;
 }
 - (void)down:(UISwipeGestureRecognizer *)gr
 {
-    direction = AWSnakeDirectionDown;
+    snakeDirection = AWSnakeDirectionDown;
 }
 - (void)left:(UISwipeGestureRecognizer *)gr
 {
-    direction = AWSnakeDirectionLeft;
+    snakeDirection = AWSnakeDirectionLeft;
 }
 - (void)right:(UISwipeGestureRecognizer *)gr
 {
-    direction = AWSnakeDirectionRight;
+    snakeDirection = AWSnakeDirectionRight;
 }
 
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	[[AWSnake snakeInstance] reset];
-    direction = [AWSnake snakeInstance].currentDirection;
-	timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(snakeMove) userInfo:nil repeats:YES];
+    [[AWSnake snakeInstance] reset];
+    snakeDirection = [AWSnake snakeInstance].currentDirection;
+	timer = [NSTimer scheduledTimerWithTimeInterval:MOVE_SPEED target:self selector:@selector(snakeMove) userInfo:nil repeats:YES];
 }
 
 @end

@@ -1,8 +1,8 @@
-#import "AWGridView.h"
+#import "AWGameGridView.h"
 #import "AWSnake.h"
 #import "AWFood.h"
 
-@implementation AWGridView
+@implementation AWGameGridView
 {
     NSUInteger gridWidth;
 }
@@ -12,13 +12,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        
         gridWidth = width;
         NSInteger rowCount = ceilf(self.bounds.size.height / width);
         NSInteger columnCount = ceilf(self.bounds.size.width / width);
         _boundary = [[AWPositionItem alloc] initWithRow:rowCount column:columnCount];
  
-        // Draw grid background view
+        // Draw grid image view
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
         [[UIColor blackColor] set];
         for (NSUInteger rowOffset = gridWidth; rowOffset < self.bounds.size.height; rowOffset += gridWidth) {
@@ -50,16 +49,15 @@
     [super drawRect:rect];
 
 	// Draw food
-	[[UIColor greenColor] set];
+	[[UIColor redColor] set];
 	AWPositionItem *foodPosition = [AWFood foodInstance].position;
-	UIBezierPath *foodPath = [UIBezierPath bezierPathWithRect:CGRectMake(foodPosition.column * gridWidth, foodPosition.row * gridWidth, gridWidth, gridWidth)];
+    UIBezierPath *foodPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(foodPosition.column * gridWidth, foodPosition.row * gridWidth, gridWidth, gridWidth)];
 	[foodPath fill];
-
-	// Draw snake
-    [[UIColor purpleColor] set];
+	// Draw snake body
+    [[UIColor greenColor] set];
     for (AWPositionItem *item in [AWSnake snakeInstance].bodyItems) {
-        UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(item.column * gridWidth, item.row * gridWidth, gridWidth, gridWidth)];
-        [path fill];
+        UIBezierPath *bodyPath = [UIBezierPath bezierPathWithRect:CGRectMake(item.column * gridWidth, item.row * gridWidth, gridWidth, gridWidth)];
+        [bodyPath fill];
     }
 }
 

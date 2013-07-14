@@ -16,7 +16,7 @@ static AWFood *instance = nil;
 {
 	self = [super init];
 	if (self) {
-		_position = [[AWPositionItem alloc] initWithRow:0.0 column:0.0];
+		_position = [[AWPositionItem alloc] initWithRow:0 column:0];
 	}
 	return self;
 }
